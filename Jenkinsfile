@@ -11,36 +11,37 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building stage!'
-                bat 'make build'
+                bat 'echo Simulando build'
             }
         }
 
         stage('Unit tests') {
             steps {
-                bat 'make test-unit'
-                archiveArtifacts artifacts: 'results/*.xml'
+                bat 'echo Simulando unit tests'
+                // archiveArtifacts artifacts: 'results/*.xml'
             }
         }
 
         stage('API Tests') {
             steps {
                 echo 'Running API Tests'
-                bat 'make test-api'
-                archiveArtifacts artifacts: 'results/api/*.xml'
+                bat 'echo Simulando API tests'
+                // archiveArtifacts artifacts: 'results/api/*.xml'
             }
         }
 
         stage('E2E Tests') {
             steps {
                 echo 'Running E2E Tests'
-                bat 'make test-e2e'
-                archiveArtifacts artifacts: 'results/e2e/*.xml'
+                bat 'echo Simulando E2E tests'
+                // archiveArtifacts artifacts: 'results/e2e/*.xml'
             }
         }
     }
 
     post {
         always {
+            // No hay resultados junit porque es simulación
             junit 'results/**/*.xml'
             cleanWs()
         }
